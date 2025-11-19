@@ -1,0 +1,31 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Теги - ServiceHub Магазин{% endblock %}
+
+{% block content %}
+<h1>🏷️ Теги</h1>
+
+<div class="row mt-4">
+    {% for tag in tags %}
+    <div class="col-md-3 mb-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <span class="badge fs-6" style="background-color: {{ tag.color }};">{{ tag.name }}</span>
+                <a href="{% url 'product_list' %}?tag={{ tag.id }}" class="btn btn-sm btn-outline-primary mt-2">
+                    Смотреть товары
+                </a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info">Теги не найдены.</div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="mt-4">
+    <a href="{% url 'tag_create' %}" class="btn btn-success"> Добавить тег</a>
+    <a href="{% url 'product_list' %}" class="btn btn-outline-secondary"> Назад к товарам</a>
+</div>
+{% endblock %}

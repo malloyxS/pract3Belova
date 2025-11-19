@@ -1,0 +1,11 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'product_list' %}">🛍️ ServiceHub Магазин</a>
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="{% url 'product_list' %}">📦 Товары</a>
+            <a class="nav-link" href="{% url 'category_list' %}"> Категории</a>
+            <a class="nav-link" href="{% url 'tag_list' %}"> Теги</a>
+            <a class="nav-link" href="{% url 'order_create' %}">🛒 Оформить заказ</a>
+        </div>
+    </div>
+</nav>
