@@ -1,11 +1,51 @@
-﻿<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'product_list' %}">🛍️ ServiceHub Магазин</a>
-        <div class="navbar-nav ms-auto">
-            <a class="nav-link" href="{% url 'product_list' %}">📦 Товары</a>
-            <a class="nav-link" href="{% url 'category_list' %}"> Категории</a>
-            <a class="nav-link" href="{% url 'tag_list' %}"> Теги</a>
-            <a class="nav-link" href="{% url 'order_create' %}">🛒 Оформить заказ</a>
+        <a class="navbar-brand" href="{% url 'product_list' %}">
+            <i class="fas fa-store"></i> ГазДержатьНадо
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'product_list' %}">
+                        <i class="fas fa-box"></i> Товары
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'category_list' %}">
+                        <i class="fas fa-folder"></i> Категории
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'tag_list' %}">
+                        <i class="fas fa-tags"></i> Теги
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'order_create' %}">
+                        <i class="fas fa-shopping-cart"></i> Заказы
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="navbar-nav">
+                <a class="nav-link" href="{% url 'about' %}">
+                    <i class="fas fa-info-circle"></i> О нас
+                </a>
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'profile' %}">
+                    <i class="fas fa-user"></i> Профиль
+                </a>
+                {% else %}
+                <a class="nav-link" href="/admin/">
+                    <i class="fas fa-sign-in-alt"></i> Войти
+                </a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </nav>

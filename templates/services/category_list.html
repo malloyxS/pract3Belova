@@ -1,32 +1,47 @@
 ﻿{% extends 'base.html' %}
 
-{% block title %}Категории - ServiceHub Магазин{% endblock %}
+{% block title %}Категории - ГазДержатьНадо Магазин{% endblock %}
 
 {% block content %}
-<h1>�� Категории</h1>
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>📂 Категории</h1>
+        <a href="{% url 'category_create' %}" class="btn btn-success">
+            ➕ Добавить категорию
+        </a>
+    </div>
 
-<div class="row mt-4">
-    {% for category in categories %}
-    <div class="col-md-4 mb-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ category.name }}</h5>
-                <p class="card-text">{{ category.description|default:"Описание отсутствует" }}</p>
-                <a href="{% url 'product_list' %}?category={{ category.id }}" class="btn btn-primary">
-                    Смотреть товары
-                </a>
+    <div class="row">
+        {% for category in categories %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ category.name }}</h5>
+                    <p class="card-text text-muted">
+                        {{ category.description|default:"Описание отсутствует" }}
+                    </p>
+                    <div class="mt-auto">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-primary">
+                                Товаров: {{ category.active_products_count }}
+                            </span>
+                            <a href="{% url 'product_list' %}?category={{ category.id }}" 
+                               class="btn btn-outline-primary btn-sm">
+                                Смотреть товары
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <h4>😔 Категории не найдены</h4>
+                <p>Пока нет ни одной категории. <a href="{% url 'category_create' %}">Создайте первую!</a></p>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    {% empty %}
-    <div class="col-12">
-        <div class="alert alert-info">Категории не найдены.</div>
-    </div>
-    {% endfor %}
-</div>
-
-<div class="mt-4">
-    <a href="{% url 'category_create' %}" class="btn btn-success"> Добавить категорию</a>
-    <a href="{% url 'product_list' %}" class="btn btn-outline-secondary"> Назад к товарам</a>
 </div>
 {% endblock %}
